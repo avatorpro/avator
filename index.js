@@ -1,7 +1,7 @@
 function sendMail(e) {
   e.preventDefault()
   var data = {}
-  var dataToSend = {}
+
   if (e.target.id === "contact-company-form") {
     data = {
       name: $("#name-ff").val(),
@@ -10,14 +10,6 @@ function sendMail(e) {
       message: $("#message-ff").val(),
       subject: $("#subject-ff").val(),
     }
-    dataToSend = {
-      subject: `Smart Butler Contact from ${data.name} `,
-      body: `name: ${data.name}
-  company: ${data.company}
-  email: ${data.email}
-  subject: ${data.subject}
-  message: ${data.message}`,
-    }
   } else {
     data = {
       name: $("#name").val(),
@@ -25,31 +17,33 @@ function sendMail(e) {
       email: $("#mail").val(),
       message: $("#message").val(),
     }
+  }
 
-    dataToSend = {
-      subject: `Smart Butler Contact from ${data.name} `,
-      body: `name: ${data.name}
-  phone: ${data.phone}
-  email: ${data.email}
-  message: ${data.message}`,
-    }
+  var formData = {
+    access_key: "eb3c901d-0f27-4a01-a79d-5192523df288",
+    subject: "Avator - הודעה חדשה מ" + data.name,
+    from_name: "Avator Website",
+    name: data.name,
+    email: data.email,
+    phone: data.phone || "",
+    company: data.company || "",
+    message: data.message || "",
   }
 
   $.ajax({
     type: "POST",
-    url: "https://jaybee.info/jaybee/website/email",
+    url: "https://api.web3forms.com/submit",
     dataType: "json",
-    crossDomain: "true",
     contentType: "application/json; charset=utf-8",
-    data: JSON.stringify(dataToSend),
+    data: JSON.stringify(formData),
 
     success: function () {
-
-      alert("Thank you!");
+      alert("!תודה רבה! ההודעה נשלחה בהצלחה");
       location.reload()
     },
     error: function (e) {
       console.error(e)
+      alert("שגיאה בשליחה, נסו שוב מאוחר יותר")
     },
   })
 }
