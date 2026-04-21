@@ -1,2 +1,0 @@
-# CorporateWebsite
-corporate-website
