@@ -118,7 +118,7 @@
               <div class="banner-info__title">
 
                 <div class="banner-description__subtitle">
-                  <h1>הגובה הוא אתגר<br>אנחנו הפתרון</h1>
+                  <h1>הגובה הוא אתגר<br>אנחנו הפתרון </h1>
                 </div>
                 <div class="banner-description__text">
                   מאחורי כל פרויקט מוצלח עומד צוות מיומן ומנוסה. הצוות מורכב מאנשי מקצוע מוסמכים לעבודות מיוחדות
@@ -954,8 +954,7 @@
               <a href="./project-11.html" class="products__item">
                 <div class="products__block">
                   <div class="products__image">
-                    <img src="images/projects/מגדלי רבי קומות תל אביב/IMG_1542.JPG"
-                      alt="מגדלי רבי קומות תל אביב">
+                    <img src="images/projects/מגדלי רבי קומות תל אביב/IMG_1542.JPG" alt="מגדלי רבי קומות תל אביב">
                   </div>
                   <div class="products__info">
                     <div class="products__title">
@@ -1198,7 +1197,8 @@
               <a href="./project-32.html" class="products__item">
                 <div class="products__block">
                   <div class="products__image">
-                    <img src="images/projects/אשקלון עיר היין פרוייקט של חברת אפי קפיטל שורה של חמשה בניינים/IMG-20241009-WA0015.JPEG"
+                    <img
+                      src="images/projects/אשקלון עיר היין פרוייקט של חברת אפי קפיטל שורה של חמשה בניינים/IMG-20241009-WA0015.JPEG"
                       alt="אשקלון עיר היין פרוייקט של חברת אפי קפיטל שורה של חמשה בניינים">
                   </div>
                   <div class="products__info">
@@ -1735,27 +1735,27 @@
     });
   </script>
 
-<!-- Sequential icon grow animation -->
-<script>
-(function() {
-  var icons = document.querySelectorAll('.hp-numbers__item .numb-box__icon');
-  if (!icons.length) return;
-  var current = 0;
+  <!-- Sequential icon grow animation -->
+  <script>
+    (function () {
+      var icons = document.querySelectorAll('.hp-numbers__item .numb-box__icon');
+      if (!icons.length) return;
+      var current = 0;
 
-  function growNext() {
-    // Remove class from previous
-    icons.forEach(function(icon) { icon.classList.remove('icon-grow'); });
-    // Add to current
-    icons[current].classList.add('icon-grow');
-    current = (current + 1) % icons.length;
-  }
+      function growNext() {
+        // Remove class from previous
+        icons.forEach(function (icon) { icon.classList.remove('icon-grow'); });
+        // Add to current
+        icons[current].classList.add('icon-grow');
+        current = (current + 1) % icons.length;
+      }
 
-  // Start cycling every 2 seconds
-  setInterval(growNext, 2000);
-  // Kick off the first one immediately
-  growNext();
-})();
-</script>
+      // Start cycling every 2 seconds
+      setInterval(growNext, 2000);
+      // Kick off the first one immediately
+      growNext();
+    })();
+  </script>
 
 
 

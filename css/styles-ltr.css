@@ -1123,9 +1123,8 @@ footer {
 
 @media (max-width:1200px) {
 	.sub-nav {
-		flex: 0 0 30%;
-		flex-direction: column;
-		gap: 0;
+		flex: 0 0 auto;
+		gap: 15px;
 	}
 }
 
@@ -1481,7 +1480,7 @@ footer {
 	.banner-description__subtitle h1 {
 		font-size: 37px;
 		padding: 0;
-		line-height: 1;
+		line-height: 1.3;
 	}
 
 	.banner-description__text {
@@ -1490,11 +1489,7 @@ footer {
 	}
 }
 
-@media (max-width:425px) {
-	.banner-info__title br {
-		display: none;
-	}
-}
+/* br kept visible on all screen sizes to avoid merging words */
 
 .banner-description__title {
 	margin-top: 5px;
@@ -2030,6 +2025,7 @@ video[poster] {
 	line-height: normal;
 	direction: ltr;
 	unicode-bidi: embed;
+	white-space: nowrap;
 }
 
 .header-telephone:hover {
@@ -2042,6 +2038,19 @@ video[poster] {
 	margin-left: 0;
 }
 
+@media (max-width:1200px) {
+	.header-telephone {
+		font-size: 16px;
+		height: auto;
+	}
+
+	.main-btn_white-header {
+		width: auto;
+		font-size: 16px;
+		height: 44px;
+		padding: 5px 20px 5px 6px;
+	}
+}
 
 .image-header-button {
 	background: #FFC510;
