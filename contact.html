@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -440,6 +440,39 @@
 	<!-- custom js -->
 	<script src="js/common.js?v=0.64" defer></script>
 
+	<!-- Cookie Consent Popup -->
+	<div class="cookie-consent" id="cookieConsent">
+		<div class="cookie-consent__inner">
+			<div class="cookie-consent__icon">🍪</div>
+			<div class="cookie-consent__text">
+				<strong>אנחנו משתמשים בעוגיות</strong>
+				האתר משתמש בעוגיות לשיפור חוויית הגלישה ולניתוח תנועה באתר.
+			</div>
+			<div class="cookie-consent__actions">
+				<button class="cookie-consent__accept" id="cookieAccept">אישור</button>
+				<a href="./privacy-policy.html" class="cookie-consent__link">מדיניות פרטיות</a>
+			</div>
+		</div>
+	</div>
+	<script>
+		(function () {
+			var consent = document.getElementById('cookieConsent');
+			var acceptBtn = document.getElementById('cookieAccept');
+			if (!consent || !acceptBtn) return;
+			if (!localStorage.getItem('cookieConsent')) {
+				setTimeout(function () { consent.classList.add('active'); }, 1500);
+			}
+			acceptBtn.addEventListener('click', function () {
+				localStorage.setItem('cookieConsent', 'accepted');
+				consent.classList.remove('active');
+			});
+		})();
+	</script>
+
+  <!-- Accessibility Widget -->
+  <script src="js/accessibility.js" defer></script>
+
 </body>
 
 </html>
+

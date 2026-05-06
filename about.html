@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -580,6 +580,7 @@
 			// 	direction,
 			// 	progress
 			// })
+		// })
 		})
 
 		function raf(time) {
@@ -591,36 +592,17 @@
 	</script>
 
 	<script src="js/plugins.min.js"></script>
-
 	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
 	<script>
 		AOS.init({
-			// disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
-			// startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
-			// initClassName: 'aos-init', // class applied after initialization
-			// animatedClassName: 'aos-animate', // class applied on animation
-			useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
-			// disableMutationObserver: false, // disables automatic mutations' detections (advanced)
-			// debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
-			// throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
-
-
-			// Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
-			// offset: 200, // offset (in px) from the original trigger point
-			delay: 0, // values from 0 to 3000, with step 50ms
-			// duration: 400, // values from 0 to 3000, with step 50ms
-			// easing: 'ease', // default easing for AOS animations
-			once: true, // whether animation should happen only once - while scrolling down
-			// mirror: false, // whether elements should animate out while scrolling past them
-			// anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
-
+			useClassNames: false,
+			delay: 0,
+			once: true,
 		});
 	</script>
 	<!-- custom js -->
 	<script src="js/common.js?v=0.64" defer></script>
 	<script>
-		// audio 
 		function toggleAudio() {
 			var audioElement = document.getElementById('player')
 			var soundOn = document.getElementsByClassName('play')
@@ -636,48 +618,71 @@
 			}
 		}
 	</script>
+	<script>
+		$(document).ready(function () {
+			function animateNumber($el) {
+				var target = parseInt($el.data("count"));
+				$({ countNum: 0 }).animate(
+					{ countNum: target },
+					{
+						duration: 2000,
+						easing: "swing",
+						step: function () { $el.text(Math.floor(this.countNum)); },
+						complete: function () { $el.text(this.countNum); },
+					}
+				);
+			}
+			function isScrolledIntoView($elem) {
+				var docViewTop = $(window).scrollTop();
+				var docViewBottom = docViewTop + $(window).height();
+				var elemTop = $elem.offset().top;
+				var elemBottom = elemTop + $elem.height();
+				return elemBottom <= docViewBottom && elemTop >= docViewTop;
+			}
+			var $numbers = $(".numb-box__number");
+			var animated = false;
+			$(window).on("scroll load", function () {
+				if (!animated && $numbers.length && isScrolledIntoView($numbers.first())) {
+					$numbers.each(function () { animateNumber($(this)); });
+					animated = true;
+				}
+			});
+		});
+	</script>
 
-  <script>
-    $(document).ready(function () {
-      function animateNumber($el) {
-        var target = parseInt($el.data("count"));
-        $({ countNum: 0 }).animate(
-          { countNum: target },
-          {
-            duration: 2000,
-            easing: "swing",
-            step: function () {
-              $el.text(Math.floor(this.countNum));
-            },
-            complete: function () {
-              $el.text(this.countNum);
-            },
-          }
-        );
-      }
-    
-      function isScrolledIntoView($elem) {
-        var docViewTop = $(window).scrollTop();
-        var docViewBottom = docViewTop + $(window).height();
-        var elemTop = $elem.offset().top;
-        var elemBottom = elemTop + $elem.height();
-        return elemBottom <= docViewBottom && elemTop >= docViewTop;
-      }
-    
-      var $numbers = $(".numb-box__number");
-      var animated = false;
-    
-      $(window).on("scroll load", function () {
-        if (!animated && $numbers.length && isScrolledIntoView($numbers.first())) {
-          $numbers.each(function () {
-            animateNumber($(this));
-          });
-          animated = true;
-        }
-      });
-    });
-    </script>
+	<!-- Cookie Consent Popup -->
+	<div class="cookie-consent" id="cookieConsent">
+		<div class="cookie-consent__inner">
+			<div class="cookie-consent__icon">🍪</div>
+			<div class="cookie-consent__text">
+				<strong>אנחנו משתמשים בעוגיות</strong>
+				האתר משתמש בעוגיות לשיפור חוויית הגלישה ולניתוח תנועה באתר.
+			</div>
+			<div class="cookie-consent__actions">
+				<button class="cookie-consent__accept" id="cookieAccept">אישור</button>
+				<a href="./privacy-policy.html" class="cookie-consent__link">מדיניות פרטיות</a>
+			</div>
+		</div>
+	</div>
+	<script>
+		(function () {
+			var consent = document.getElementById('cookieConsent');
+			var acceptBtn = document.getElementById('cookieAccept');
+			if (!consent || !acceptBtn) return;
+			if (!localStorage.getItem('cookieConsent')) {
+				setTimeout(function () { consent.classList.add('active'); }, 1500);
+			}
+			acceptBtn.addEventListener('click', function () {
+				localStorage.setItem('cookieConsent', 'accepted');
+				consent.classList.remove('active');
+			});
+		})();
+	</script>
+
+  <!-- Accessibility Widget -->
+  <script src="js/accessibility.js" defer></script>
 
 </body>
 
 </html>
+
